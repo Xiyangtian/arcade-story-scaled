@@ -1,4 +1,12 @@
+//% block="Story" color="#b36634" icon="\uf02d"
+//% groups='["Text","Movement","Cutscene","Menu"]'
 namespace story {
+    export interface Task {
+        isDone(): boolean;
+        key?: string;
+        cancel?: () => void;
+    }
+
     export let UI_SCALE = Math.max(1, Math.floor(screen.width / 160));
 
     /**
