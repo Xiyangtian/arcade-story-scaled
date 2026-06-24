@@ -1,6 +1,6 @@
 {
-    "name": "arcade-story",
-    "version": "1.0.3",
+    "name": "arcade-story-scaled",
+    "version": "1.0.0",
     "description": "",
     "dependencies": {
         "device": "*"
