@@ -20,8 +20,8 @@ namespace story {
             this.parent = task;
         }
 
-        destroy() {
-            super.destroy();
+        destroy(effect?: any, duration?: number) {
+            super.destroy(effect, duration);
             if (this.parent && this.parent.cancel) {
                 this.parent.cancel();
             }
