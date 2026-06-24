@@ -288,8 +288,8 @@ namespace story {
             this.state = BubbleState.Stopped;
         }
 
-        destroy() {
-            super.destroy();
+        destroy(effect?: any, duration?: number) {
+            super.destroy(effect, duration);
             this.stop();
         }
 
