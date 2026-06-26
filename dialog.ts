@@ -90,27 +90,28 @@ namespace story {
             const arrowText = new story.TextSprite(story.TEXT_Z + 1);
             arrowText.setText("SELECT");
             arrowText.setColor(15);
-            arrowText.top = screen.height - (arrows.height >> 1) - (arrowText.getHeight() >> 1);
 
             const buttonText = new story.TextSprite(story.TEXT_Z + 1);
             buttonText.setText("OK");
             buttonText.setColor(15);
-            buttonText.top = screen.height - (arrows.height >> 1) - (buttonText.getHeight() >> 1);
 
             const arrowIcon = new story.IconSprite(story.TEXT_Z + 1);
-            arrowIcon.top = screen.height - arrows.height;
             arrowIcon.setIcon(arrows);
 
             const buttonIcon = new story.IconSprite(story.TEXT_Z + 1);
-            buttonIcon.top = screen.height - abutton.height;
             buttonIcon.setIcon(abutton);
 
-            const totalWidth = arrowText.getWidth() + buttonText.getWidth() + arrows.width + abutton.width + 4;
+            arrowIcon.top = screen.height - arrowIcon.height;
+            buttonIcon.top = screen.height - buttonIcon.height;
+            arrowText.top = screen.height - (arrowIcon.height >> 1) - (arrowText.height >> 1);
+            buttonText.top = screen.height - (buttonIcon.height >> 1) - (buttonText.height >> 1);
+
+            const totalWidth = arrowText.width + buttonText.width + arrowIcon.width + buttonIcon.width + 4;
 
             arrowIcon.left = (screen.width >> 1) - (totalWidth >> 1);
-            arrowText.left = arrowIcon.left + arrows.width + 1
-            buttonIcon.left = arrowText.left + arrowText.getWidth() + 2;
-            buttonText.left = buttonIcon.left + abutton.width + 1;
+            arrowText.left = arrowIcon.left + arrowIcon.width + 1
+            buttonIcon.left = arrowText.left + arrowText.width + 2;
+            buttonText.left = buttonIcon.left + buttonIcon.width + 1;
 
             const backdrop = new story.RectangleSprite(story.TEXT_Z);
             backdrop.setDimensions(156, arrows.height);
@@ -273,6 +274,7 @@ namespace story {
         const backdrop = sprites.create(backdropImg);
         backdrop.setFlag(SpriteFlag.Ghost, true);
         backdrop.z = TEXT_Z - 1;
+        backdrop.setScale(UI_SCALE);
 
         // 文字
         const textImg = image.create(w, h);
@@ -280,6 +282,7 @@ namespace story {
         const textSprite = sprites.create(textImg);
         textSprite.setFlag(SpriteFlag.Ghost, true);
         textSprite.z = TEXT_Z;
+        textSprite.setScale(UI_SCALE);
 
         const info: SayInfo = {
             sprite,

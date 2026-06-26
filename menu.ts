@@ -30,7 +30,7 @@ namespace story.menu {
     }
 
     class LayoutMetrics {
-        
+
         constructor(public left: number, public top: number, public width: number, public height: number) {
         }
 
@@ -82,7 +82,7 @@ namespace story.menu {
             this.cursorForeground = Math.max(Math.min(cursorForeground | 0, 15), 0);
             this.cursorBackground = Math.max(Math.min(cursorBackground | 0, 15), 0);
         }
-        
+
         setStyle(style: MenuStyle) {
             this.style = style;
         }
@@ -206,14 +206,15 @@ namespace story.menu {
         }
 
         __drawCore(camera: scene.Camera) {
+            const scale = UI_SCALE;
             if (this.background) {
                 screen.fillRect(
-                    this.metrics.left,
-                    this.metrics.top,
-                    this.metrics.width,
+                    this.metrics.left * scale,
+                    this.metrics.top * scale,
+                    this.metrics.width * scale,
                     Math.min(
-                        this.metrics.height,
-                        this.contentHeight() + this.padding
+                        this.metrics.height * scale,
+                        (this.contentHeight() + this.padding) * scale
                     ),
                     this.background
                 );
@@ -257,6 +258,7 @@ namespace story.menu {
         }
 
         protected drawGridMenu() {
+            const scale = UI_SCALE;
             let current: ScrollingLabel;
 
             let top = this.metrics.top + this.padding;
@@ -266,11 +268,11 @@ namespace story.menu {
                 current = this.labels[i];
 
                 if (i === this.selectedIndex) {
-                    screen.fillRect(left - 1, top - 1, current.width + 2, current.font.charHeight + 2, this.cursorBackground);
-                    current.draw(left, top, this.cursorForeground);
+                    screen.fillRect((left - 1) * scale, (top - 1) * scale, (current.width + 2) * scale, (current.font.charHeight + 2) * scale, this.cursorBackground);
+                    current.draw(left * scale, top * scale, this.cursorForeground);
                 }
                 else {
-                    current.draw(left, top, this.foreground);
+                    current.draw(left * scale, top * scale, this.foreground);
                 }
 
                 if (i % 2 === 1) {
@@ -284,6 +286,7 @@ namespace story.menu {
         }
 
         protected drawListMenu() {
+            const scale = UI_SCALE;
             let current: ScrollingLabel;
 
             let top = this.metrics.top + this.padding;
@@ -292,11 +295,11 @@ namespace story.menu {
             for (let i = 0; i < this.labels.length; i++) {
                 current = this.labels[i];
                 if (i === this.selectedIndex) {
-                    screen.fillRect(left - 1, top - 1, current.width + 2, current.font.charHeight + 2, this.cursorBackground);
-                    current.draw(left, top, this.cursorForeground);
+                    screen.fillRect((left - 1) * scale, (top - 1) * scale, (current.width + 2) * scale, (current.font.charHeight + 2) * scale, this.cursorBackground);
+                    current.draw(left * scale, top * scale, this.cursorForeground);
                 }
                 else {
-                    current.draw(left, top, this.foreground);
+                    current.draw(left * scale, top * scale, this.foreground);
                 }
 
                 top += current.font.charHeight + this.padding
@@ -343,8 +346,12 @@ namespace story.menu {
         }
 
         draw(left: number, top: number, color: number) {
-            const startIndex = Math.idiv(this.offset, this.font.charWidth);
-            const letterOffset = startIndex * this.font.charWidth - this.offset;
+            const scale = story.UI_SCALE;
+            const font = this.font;
+            const charW = font.charWidth;
+            const charH = font.charHeight;
+            const startIndex = Math.idiv(this.offset, charW);
+            const letterOffset = startIndex * charW - this.offset;
 
             if (!this.scrolling) {
                 this.offset = 0;
@@ -372,32 +379,53 @@ namespace story.menu {
                 }
             }
 
+            const canvas = image.create(this.maxCharacters * charW + charW, charH);
             if (letterOffset) {
                 this.partialCanvas.fill(0);
-                this.partialCanvas.print(this.text.charAt(startIndex), letterOffset, 0, color, this.font)
-                screen.drawTransparentImage(this.partialCanvas, left, top);
+                this.partialCanvas.print(this.text.charAt(startIndex), letterOffset, 0, color, font);
+                canvas.drawTransparentImage(this.partialCanvas, 0, 0);
             }
             else {
-                screen.print(this.text.charAt(startIndex), left, top, color, this.font);
+                canvas.print(this.text.charAt(startIndex), 0, 0, color, font);
             }
 
             for (let i = 1; i < this.maxCharacters; i++) {
-                screen.print(
+                canvas.print(
                     this.text.charAt(startIndex + i),
-                    left + i * this.font.charWidth + letterOffset,
-                    top,
+                    i * charW + letterOffset,
+                    0,
                     color,
-                    this.font
+                    font
                 );
+            }
+
+            if (scale === 1) {
+                screen.drawTransparentImage(canvas, left, top);
+            }
+            else {
+                const drawWidth = this.maxCharacters * charW;
+                const scaled = image.create(drawWidth * scale, charH * scale);
+                for (let x = 0; x < drawWidth; x++) {
+                    for (let y = 0; y < charH; y++) {
+                        const c = canvas.getPixel(x, y);
+                        if (c) {
+                            scaled.fillRect(x * scale, y * scale, scale, scale, c);
+                        }
+                    }
+                }
+                screen.drawTransparentImage(scaled, left, top);
             }
         }
     }
 
     function getLayoutMetrics(layout: MenuLocation) {
         const padding = 2;
+        const scale = UI_SCALE;
 
-        const maxWidth = screen.width - (padding << 1);
-        const maxHeight = screen.height - (padding << 1);
+        const maxWidth = Math.idiv(screen.width - (padding << 1), scale);
+        const maxHeight = Math.idiv(screen.height - (padding << 1), scale);
+        const halfWidth = Math.idiv(screen.width >> 1, scale);
+        const halfHeight = Math.idiv(screen.height >> 1, scale);
 
         switch (layout) {
             case MenuLocation.FullScreen:
@@ -407,17 +435,17 @@ namespace story.menu {
             case MenuLocation.TopHalf:
                 return new LayoutMetrics(padding, padding, maxWidth, maxHeight >> 1);
             case MenuLocation.RightHalf:
-                return new LayoutMetrics(screen.width >> 1, padding, maxWidth >> 1, maxHeight);
+                return new LayoutMetrics(halfWidth, padding, maxWidth >> 1, maxHeight);
             case MenuLocation.BottomHalf:
-                return new LayoutMetrics(padding, screen.height >> 1, maxWidth, maxHeight >> 1);
+                return new LayoutMetrics(padding, halfHeight, maxWidth, maxHeight >> 1);
             case MenuLocation.LeftHalf:
                 return new LayoutMetrics(padding, padding, maxWidth >> 1, maxHeight);
             case MenuLocation.TopRight:
-                return new LayoutMetrics(screen.width >> 1, padding, maxWidth >> 1, maxHeight >> 1);
+                return new LayoutMetrics(halfWidth, padding, maxWidth >> 1, maxHeight >> 1);
             case MenuLocation.BottomRight:
-                return new LayoutMetrics(screen.width >> 1, screen.height >> 1, maxWidth >> 1, maxHeight >> 1);
+                return new LayoutMetrics(halfWidth, halfHeight, maxWidth >> 1, maxHeight >> 1);
             case MenuLocation.BottomLeft:
-                return new LayoutMetrics(padding, screen.height >> 1, maxWidth >> 1, maxHeight >> 1);
+                return new LayoutMetrics(padding, halfHeight, maxWidth >> 1, maxHeight >> 1);
             case MenuLocation.TopLeft:
                 return new LayoutMetrics(padding, padding, maxWidth >> 1, maxHeight >> 1);
         }
