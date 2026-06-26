@@ -23,10 +23,10 @@ namespace story {
                 continue;
             }
 
-            info.textSprite.left = info.sprite.x - (info.textSprite.width >> 1);
-            info.textSprite.top = info.sprite.top - info.textSprite.height - 4;
             info.backdrop.left = info.sprite.x - (info.backdrop.width >> 1);
             info.backdrop.top = info.sprite.top - info.backdrop.height - 4;
+            info.textSprite.left = info.sprite.x - (info.textSprite.width >> 1);
+            info.textSprite.top = info.backdrop.top + ((info.backdrop.height - info.textSprite.height) >> 1);
         }
     });
 
