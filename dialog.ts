@@ -201,7 +201,7 @@ namespace story {
         const height = Math.min(50, Math.idiv(screen.height >> 1, UI_SCALE));
         const x = Math.idiv(screen.width, UI_SCALE << 1);
         const y = Math.idiv(screen.height, UI_SCALE) - Math.idiv(height, 2) - 5;
-        const bubble = printDialog(text, x, y, height, width);
+        const bubble = _createDialog(text, x, y, height, width);
         _activeBubble = bubble;
 
         if (label) {
@@ -250,7 +250,13 @@ namespace story {
         if (!text) return;
 
         // 移除同一个精灵的旧对话
-        const existing = _activeSays.findIndex(s => s.sprite === sprite);
+        let existing = -1;
+        for (let i = 0; i < _activeSays.length; i++) {
+            if (_activeSays[i].sprite === sprite) {
+                existing = i;
+                break;
+            }
+        }
         if (existing >= 0) {
             _activeSays[existing].textSprite.destroy();
             _activeSays[existing].backdrop.destroy();
@@ -394,7 +400,7 @@ namespace story {
         cancelCurrentCutscene();
     }
 
-    function printDialog(text: string, x: number, y: number, height: number, width: number, foreground = 15, background = 1, speed?: TextSpeed) {
+    function _createDialog(text: string, x: number, y: number, height: number, width: number, foreground = 15, background = 1, speed?: TextSpeed) {
         const font = image.getFontForText(text);
         const script = _formatText(text, speed === undefined ? TextSpeed.Normal : speed, Math.idiv(width - 8, font.charWidth), Math.idiv(height - 8, font.charHeight));
 
