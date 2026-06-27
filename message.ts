@@ -157,7 +157,7 @@ namespace story {
                 top = this.topAlign * scale;
             }
             else {
-                left = this.cx * scale - (width >> 1) - (this.relativeToCamera ? 0 : camera.drawOffsetX);
+                left = this.cx * scale - width / 2 - (this.relativeToCamera ? 0 : camera.drawOffsetX);
 
                 if (left + width > screen.width) {
                     if (left + width - screen.width > maxPanDistance * scale) {
@@ -181,12 +181,12 @@ namespace story {
                 top = this.topAlign * scale;
             }
             else {
-                top = this.cy * scale - (height >> 1) - (this.relativeToCamera ? 0 : camera.drawOffsetY);
+                top = this.cy * scale - height / 2 - (this.relativeToCamera ? 0 : camera.drawOffsetY);
 
                 const lines = this.currentPage ? this.currentPage.lines.slice(0, this.lineIndex + 1) : [];
                 if (lines.length > 1) {
                     for (let i = 0; i < lines.length - 1; i++) {
-                        top -= (lines[i].height * scale) >> 1;
+                        top -= (lines[i].height * scale) / 2;
                     }
                 }
 

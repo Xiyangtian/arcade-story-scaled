@@ -30,7 +30,7 @@ namespace story.menu {
     }
 
     class LayoutMetrics {
-
+        
         constructor(public left: number, public top: number, public width: number, public height: number) {
         }
 
@@ -82,7 +82,7 @@ namespace story.menu {
             this.cursorForeground = Math.max(Math.min(cursorForeground | 0, 15), 0);
             this.cursorBackground = Math.max(Math.min(cursorBackground | 0, 15), 0);
         }
-
+        
         setStyle(style: MenuStyle) {
             this.style = style;
         }

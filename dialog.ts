@@ -23,10 +23,10 @@ namespace story {
                 continue;
             }
 
-            info.backdrop.left = info.sprite.x - (info.backdrop.width >> 1);
+            info.backdrop.left = info.sprite.x - info.backdrop.width / 2;
             info.backdrop.top = info.sprite.top - info.backdrop.height - 4;
-            info.textSprite.left = info.sprite.x - (info.textSprite.width >> 1);
-            info.textSprite.top = info.backdrop.top + ((info.backdrop.height - info.textSprite.height) >> 1);
+            info.textSprite.left = info.sprite.x - info.textSprite.width / 2;
+            info.textSprite.top = info.backdrop.top + (info.backdrop.height - info.textSprite.height) / 2;
         }
     });
 
@@ -103,12 +103,12 @@ namespace story {
 
             arrowIcon.top = screen.height - arrowIcon.height;
             buttonIcon.top = screen.height - buttonIcon.height;
-            arrowText.top = screen.height - (arrowIcon.height >> 1) - (arrowText.height >> 1);
-            buttonText.top = screen.height - (buttonIcon.height >> 1) - (buttonText.height >> 1);
+            arrowText.top = screen.height - arrowIcon.height / 2 - arrowText.height / 2;
+            buttonText.top = screen.height - buttonIcon.height / 2 - buttonText.height / 2;
 
             const totalWidth = arrowText.width + buttonText.width + arrowIcon.width + buttonIcon.width + 4;
 
-            arrowIcon.left = (screen.width >> 1) - (totalWidth >> 1);
+            arrowIcon.left = (screen.width >> 1) - totalWidth / 2;
             arrowText.left = arrowIcon.left + arrowIcon.width + 1
             buttonIcon.left = arrowText.left + arrowText.width + 2;
             buttonText.left = buttonIcon.left + buttonIcon.width + 1;
@@ -116,7 +116,7 @@ namespace story {
             const backdrop = new story.RectangleSprite(story.TEXT_Z);
             backdrop.setDimensions(156, arrows.height);
             backdrop.top = screen.height - backdrop.height;
-            backdrop.left = (screen.width >> 1) - (backdrop.width >> 1);
+            backdrop.left = (screen.width >> 1) - backdrop.width / 2;
 
             story.menu.showMenu(choices, story.menu.MenuStyle.List, story.menu.MenuLocation.BottomHalf);
             pauseUntil(() => !story.menu.isMenuOpen());
