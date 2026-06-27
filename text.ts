@@ -10,7 +10,7 @@ namespace story {
      * @param speed The speed at which to print the text
      */
     //% blockId=story_show_text
-    //% block="print $text at x $x y $y||with text color $foreground back color $background $speed"
+    //% block="在 x $x y $y 打印 $text||文字颜色 $foreground 背景颜色 $background 速度 $speed"
     //% help=github:arcade-story/print-text.md
     //% text.defl=":)"
     //% foreground.shadow=colorindexpicker
@@ -20,7 +20,7 @@ namespace story {
     //% inlineInputMode=inline
     //% blockGap=8
     //% weight=99
-    //% group="Text"
+    //% group="文本"
     export function printText(text: string, x: number, y: number, foreground = 15, background = 1, speed?: TextSpeed) {
         const script = _formatText(text, speed === undefined ? TextSpeed.Normal : speed);
         script.setColors(foreground, background);
@@ -102,7 +102,7 @@ namespace story {
      * @param speed The speed at which to print the text
      */
     //% blockId=story_print_dialog
-    //% block="print $text at camera x $x y $y in box width $width height $height||with text color $foreground back color $background $speed"
+    //% block="在相机 x $x y $y 的盒子中打印 $text 宽度 $width 高度 $height||文字颜色 $foreground 背景颜色 $background 速度 $speed"
     //% help=github:arcade-story/print-dialog.md
     //% text.defl=":)"
     //% foreground.shadow=colorindexpicker
@@ -116,7 +116,7 @@ namespace story {
     //% inlineInputMode=inline
     //% blockGap=8
     //% weight=60
-    //% group="Text"
+    //% group="文本"
     export function printDialog(text: string, x: number, y: number, height: number, width: number, foreground = 15, background = 1, speed?: TextSpeed) {
         const font = image.getFontForText(text);
         const script = _formatText(text, speed === undefined ? TextSpeed.Normal : speed, Math.idiv(width - 8, font.charWidth), Math.idiv(height - 8, font.charHeight));
@@ -132,7 +132,7 @@ namespace story {
      * @param finalPagePauseMillis The time to pause at the end of the final page in milliseconds
      */
     //% blockId=story_set_page_pause_length
-    //% block="set page pause (ms) $pagePauseMillis and final page pause (ms) $finalPagePauseMillis"
+    //% block="设置翻页暂停 $pagePauseMillis 毫秒 最终页暂停 $finalPagePauseMillis 毫秒"
     //% help=github:arcade-story/set-page-pause-length.md
     //% pagePauseMillis.shadow=timePicker
     //% pagePauseMillis.defl=1000
@@ -141,7 +141,7 @@ namespace story {
     //% inlineInputMode=inline
     //% blockGap=8
     //% weight=40
-    //% group="Text"
+    //% group="文本"
     export function setPagePauseLength(pagePauseMillis: number, finalPagePauseMillis: number) {
         _defaultPagePauseLength = pagePauseMillis;
         _defaultFinalPagePauseLength = finalPagePauseMillis;

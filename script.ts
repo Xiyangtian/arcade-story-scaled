@@ -20,10 +20,10 @@ namespace story {
         }
 
         //% blockId=script_add_line
-        //% block="$this(script) add line $text $speed"
+        //% block="$this(脚本) 添加行 $text 速度 $speed"
         //% weight=90
         //% blockGap=8
-        //% group="Script"
+        //% group="脚本"
         //% deprecated=1
         addLineToCurrentPage(text: string, speed: TextSpeed) {
             if (!this.pages.length) {
@@ -33,24 +33,24 @@ namespace story {
         }
 
         //% blockId=script_new_page
-        //% block="$this(script) start new page"
+        //% block="$this(脚本) 开始新页"
         //% weight=80
         //% blockGap=8
-        //% group="Script"
+        //% group="脚本"
         //% deprecated=1
         newPage() {
             this.pages.push(new MessagePage([]));
         }
 
         //% blockId=script_set_colors
-        //% block="$this(script) set text color $foreground background color $background"
+        //% block="$this(脚本) 设置文字颜色 $foreground 背景颜色 $background"
         //% foreground.shadow=colorindexpicker
         //% foreground.defl=15
         //% background.shadow=colorindexpicker
         //% background.defl=1
         //% weight=70
         //% blockGap=8
-        //% group="Script"
+        //% group="脚本"
         //% deprecated=1
         setColors(foreground: number, background: number) {
             this.foregroundColor = foreground;
@@ -58,21 +58,21 @@ namespace story {
         }
 
         //% blockId=script_set_pause_length
-        //% block="$this(script) pause for $pauseMillis ms at end of page"
+        //% block="$this(脚本) 在页面末尾暂停 $pauseMillis 毫秒"
         //% pauseMillis.shadow=timePicker
         //% pauseMillis.defl=1000
         //% weight=60
-        //% group="Script"
+        //% group="脚本"
         //% deprecated=1
         setPagePauseLength(pauseMillis: number) {
             this.pagePauseMillis = pauseMillis;
         }
 
         //% blockId=script_set_relative_to_camera
-        //% block="$this(script) set relative to camera $relativeToCamera"
+        //% block="$this(脚本) 设置相对于相机 $relativeToCamera"
         //% weight=5
         //% blockGap=8
-        //% group="Script"
+        //% group="脚本"
         //% deprecated=1
         setRelativeToCamera(relativeToCamera: boolean) {
             this.relativeToCamera = relativeToCamera;
@@ -80,10 +80,10 @@ namespace story {
     }
 
     //% blockId=story_create_script
-    //% block="create empty script"
+    //% block="创建空脚本"
     //% blockSetVariable=script
     //% weight=98
-    //% group="Script"
+    //% group="脚本"
     //% deprecated=1
     export function createEmptyScript(): Script {
         const script = new Script();
@@ -91,8 +91,8 @@ namespace story {
     }
 
     
-    //% blockId=story_create_script_arguments
-    //% block="create script $text with text color $foreground back color $background"
+    //% blockId=story_create_script_with_text
+    //% block="创建脚本 $text 文字颜色 $foreground 背景颜色 $background"
     //% text.defl=":)"
     //% foreground.shadow=colorindexpicker
     //% foreground.defl=15
@@ -100,7 +100,7 @@ namespace story {
     //% background.defl=1
     //% blockSetVariable=script
     //% weight=99
-    //% group="Script"
+    //% group="脚本"
     //% deprecated=1
     export function createScript(text: string, foreground: number, background: number): Script {
         const script = new Script();
@@ -114,7 +114,7 @@ namespace story {
     }
 
     //% blockId=story_print_script
-    //% block="print $script at x $x y $y z $z"
+    //% block="在 x $x y $y z $z 打印 $script"
     //% script.shadow=variables_get
     //% script.defl=script
     //% x.defl=80
@@ -122,7 +122,7 @@ namespace story {
     //% weight=50
     //% inlineInputMode=inline
     //% blockGap=8
-    //% group="Script"
+    //% group="脚本"
     //% deprecated=1
     export function printScript(script: Script, x: number, y: number, z: number, align = false, relativeToCamera = false) {
         const b = new Bubble(z, relativeToCamera || script.relativeToCamera);
@@ -138,13 +138,13 @@ namespace story {
     }
 
     //% blockId=story_sprite_say_script
-    //% block="$sprite say $script"
+    //% block="$sprite 说 $script"
     //% sprite.shadow=variables_get
     //% sprite.defl=sprite
     //% script.shadow=variables_get
     //% script.defl=script
     //% weight=40
-    //% group="Script"
+    //% group="脚本"
     //% deprecated=1
     export function spriteSayScript(sprite: Sprite, script: Script) {
         const b = new Bubble();

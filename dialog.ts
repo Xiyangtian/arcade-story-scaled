@@ -150,11 +150,11 @@ namespace story {
      * @param callback The code to run inside the cutscene
      */
     //% blockId=arcade_story_start_cutscene
-    //% block="start cutscene"
+    //% block="开始过场动画"
     //% help=github:arcade-story/start-cutscene.md
     //% weight=100
     //% handlerStatement=1
-    //% group="Cutscene"
+    //% group="过场动画"
     export function startCutscene(callback: () => void) {
         _currentCutscene().cutsceneQueue.push(callback);
         if (_currentCutscene().state === State.Idle) {
@@ -171,10 +171,10 @@ namespace story {
     }
 
     //% blockId=arcade_story_start_conversation
-    //% block="start conversation"
+    //% block="开始对话"
     //% weight=100
     //% handlerStatement=1
-    //% group="Cutscene"
+    //% group="过场动画"
     //% deprecated=1
     export function startConveration(callback: () => void) {
         startCutscene(callback);
@@ -190,7 +190,7 @@ namespace story {
     //% blockId=arcade_story_print_character_text
     //% block="打印角色对话 $text|| 标签 $label"
     //% weight=30
-    //% group="Text"
+    //% group="文本"
     //% blockGap=8
     export function printCharacterText(text: string, label?: string) {
         if (_activeBubble) {
@@ -246,7 +246,7 @@ namespace story {
     //% inlineInputMode=inline
     //% blockGap=8
     //% weight=98
-    //% group="Text"
+    //% group="文本"
     export function spriteSayText(sprite: Sprite, text: string, timeOnScreen = 2000) {
         if (!text) return;
 
@@ -306,12 +306,12 @@ namespace story {
      * @param choice5 A choice to appear in the list of player choices
      */
     //% blockId=arcade_story_show_player_choices
-    //% block="show player choices $choice1 $choice2 ||$choice3 $choice4 $choice5"
+    //% block="显示玩家选项 $choice1 $choice2 ||$choice3 $choice4 $choice5"
     //% help=github:arcade-story/show-player-choices.md
     //% inlineInputMode=inline
     //% weight=80
     //% blockGap=8
-    //% group="Menu"
+    //% group="菜单"
     export function showPlayerChoices(choice1: string, choice2: string, choice3?: string, choice4?: string, choice5?: string) {
         const choices = [choice1];
         if (choice2) choices.push(choice2);
@@ -328,19 +328,19 @@ namespace story {
      * @returns True if the choice matches the last answer and false otherwise
      */
     //% blockId=arcade_story_last_answer
-    //% block="last answer equals $choice"
+    //% block="上次选择等于 $choice"
     //% help=github:arcade-story/last-answer-equals.md
     //% weight=70
-    //% group="Menu"
+    //% group="菜单"
     export function checkLastAnswer(choice: string): boolean {
         return _currentCutscene().lastAnswer === choice;
     }
 
     //% blockId=arcade_story_cancel_conversation
-    //% block="cancel conversation"
+    //% block="取消对话"
     //% weight=60
     //% deprecated=1
-    //% group="Menu"
+    //% group="菜单"
     export function cancelCurrentConversation() {
         cancelCurrentCutscene();
     }
@@ -352,11 +352,11 @@ namespace story {
      * @returns True if the menu is open and false otherwise
      */
     //% blockId=arcade_story_get_last_answer
-    //% block="get last answer"
+    //% block="获取上次选择"
     //% help=github:arcade-story/get-last-answer.md
     //% weight=60
     //% blockGap=8
-    //% group="Menu"
+    //% group="菜单"
     export function getLastAnswer(): string {
         return _currentCutscene().lastAnswer;
     }
@@ -367,10 +367,10 @@ namespace story {
      * @returns True if the menu is open and false otherwise
      */
     //% blockId=arcade_story_is_menu_open
-    //% block="is menu open"
+    //% block="菜单是否打开"
     //% help=github:arcade-story/is-menu-open.md
     //% weight=50
-    //% group="Menu"
+    //% group="菜单"
     export function isMenuOpen(): boolean {
         return story.menu.isMenuOpen();
     }
@@ -379,11 +379,11 @@ namespace story {
      * Cancels the currently active cutscene.
      */
     //% blockId=arcade_story_cancel_cutscene
-    //% block="cancel cutscene"
+    //% block="取消过场动画"
     //% help=github:arcade-story/cancel-cutscene.md
     //% weight=50
     //% blockGap=8
-    //% group="Cutscene"
+    //% group="过场动画"
     export function cancelCurrentCutscene() {
         _currentCutscene().cancel();
     }
@@ -393,11 +393,11 @@ namespace story {
      * cutscenes that haven't started yet.
      */
     //% blockId=arcade_story_cancel_all_cutscenes
-    //% block="cancel all cutscenes"
+    //% block="取消所有过场动画"
     //% help=github:arcade-story/cancel-all-cutscenes.md
     //% weight=49
     //% blockGap=8
-    //% group="Cutscene"
+    //% group="过场动画"
     export function cancelAllCutscenes() {
         _currentCutscene().cutsceneQueue = [];
         cancelCurrentCutscene();

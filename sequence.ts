@@ -51,8 +51,8 @@ namespace story {
     }
 
     //% blockId=story_queue_story_part
-    //% block="queue story part"
-    //% group="Sequence"
+    //% block="排队故事部分"
+    //% group="序列"
     //% handlerStatement=1
     //% deprecated=1
     export function queueStoryPart(cb: () => void) {
@@ -60,9 +60,9 @@ namespace story {
         stateStack[stateStack.length - 1].queue.push(cb);
     }
 
-    //% blockId=story_clear_story_parts
-    //% block="clear queued story parts"
-    //% group="Scene"
+    //% blockId=story_clear_queued_story_parts
+    //% block="清空排队的故事部分"
+    //% group="场景"
     //% deprecated=1
     export function clearQueuedStoryParts() {
         init();

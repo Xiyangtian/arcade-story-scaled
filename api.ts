@@ -1,5 +1,5 @@
-//% block="Story" color="#b36634" icon="\uf02d"
-//% groups='["Text","Movement","Cutscene","Menu"]'
+//% block="故事" color="#b36634" icon="\uf02d"
+//% groups='["文本","移动","过场动画","菜单"]'
 namespace story {
     export interface Task {
         isDone(): boolean;
@@ -33,7 +33,7 @@ namespace story {
     //% inlineInputMode=inline
     //% blockGap=8
     //% weight=30
-    //% group="Text"
+    //% group="文本"
     export function setSoundEnabled(enabled: boolean) {
         soundEnabled = enabled;
     }

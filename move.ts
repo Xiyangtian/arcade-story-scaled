@@ -12,15 +12,15 @@ namespace story {
      * @param y The absolute y position for the sprite to move ot
      * @param speed The speed at which the sprite should move
      */
-    //% blockId=story_sprite_move_to_location
-    //% block="$sprite move to x $x y $y with speed $speed"
+    //% blockId=story_move_sprite_to
+    //% block="$sprite 移动到 x $x y $y 速度 $speed"
     //% help=github:arcade-story/sprite-move-to-position.md
     //% inlineInputMode=inline
     //% sprite.shadow=variables_get
     //% sprite.defl=sprite
     //% speed.defl=100
     //% blockGap=8
-    //% group="Movement"
+    //% group="移动"
     //% weight=80
     export function spriteMoveToLocation(sprite: Sprite, x: number, y: number, speed: number) {
         const distance = calculateDistance(sprite, x, y);
@@ -68,13 +68,13 @@ namespace story {
      * @param sprite The sprite to cancel movement on
      */
     //% blockId=story_sprite_cancel_movement
-    //% block="$sprite cancel movement"
+    //% block="$sprite 取消移动"
     //% help=github:arcade-story/sprite-cancel-movement.md
     //% inlineInputMode=inline
     //% sprite.shadow=variables_get
     //% sprite.defl=sprite
     //% blockGap=8
-    //% group="Movement"
+    //% group="移动"
     //% weight=70
     export function cancelSpriteMovement(sprite: Sprite) {
         const key = moveTaskKey(sprite);

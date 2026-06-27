@@ -1,26 +1,26 @@
 namespace story {
     //% blockId=story_push_scene
-    //% block="push scene"
+    //% block="压入场景"
     //% blockGap=8
-    //% group="Scene"
+    //% group="场景"
     //% deprecated=1
     export function pushScene() {
         game.pushScene();
     }
 
     //% blockId=story_pop_scene
-    //% block="pop scene"
+    //% block="弹出场景"
     //% blockGap=8
-    //% group="Scene"
+    //% group="场景"
     //% deprecated=1
     export function popScene() {
         game.popScene();
     }
 
     //% blockId=story_clear_scene
-    //% block="clear scene"
+    //% block="清空场景"
     //% blockGap=8
-    //% group="Scene"
+    //% group="场景"
     //% deprecated=1
     export function clearScene() {
         popScene();
@@ -31,9 +31,9 @@ namespace story {
      * Cancels all text from the story extension that is currently visible on the screen.
      */
     //% blockId="story_clear_all_text"
-    //% block="cancel current text"
+    //% block="取消当前文本"
     //% help=github:arcade-story/cancel-current-text.md
-    //% group="Cutscene"
+    //% group="过场动画"
     //% blockGap=8
     //% weight=20
     export function clearAllText() {

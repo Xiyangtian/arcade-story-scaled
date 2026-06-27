@@ -1,36 +1,36 @@
 namespace story.menu {
     export enum MenuLocation {
-        //% block="full screen"
+        //% block="全屏"
         FullScreen,
-        //% block="centered"
+        //% block="居中"
         Center,
-        //% block="top half"
+        //% block="上半部分"
         TopHalf,
-        //% block="right half"
+        //% block="右半部分"
         RightHalf,
-        //% block="bottom half"
+        //% block="下半部分"
         BottomHalf,
-        //% block="left half"
+        //% block="左半部分"
         LeftHalf,
-        //% block="top right"
+        //% block="右上"
         TopRight,
-        //% block="bottom right"
+        //% block="右下"
         BottomRight,
-        //% block="bottom left"
+        //% block="左下"
         BottomLeft,
-        //% block="top left"
+        //% block="左上"
         TopLeft
     }
 
     export enum MenuStyle {
-        //% block="grid"
+        //% block="网格"
         Grid,
-        //% block="list"
+        //% block="列表"
         List
     }
 
     class LayoutMetrics {
-
+        
         constructor(public left: number, public top: number, public width: number, public height: number) {
         }
 
@@ -82,7 +82,7 @@ namespace story.menu {
             this.cursorForeground = Math.max(Math.min(cursorForeground | 0, 15), 0);
             this.cursorBackground = Math.max(Math.min(cursorBackground | 0, 15), 0);
         }
-
+        
         setStyle(style: MenuStyle) {
             this.style = style;
         }
