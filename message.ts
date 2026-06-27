@@ -144,7 +144,7 @@ namespace story {
         }
 
         protected updatePosition(camera: scene.Camera) {
-            const scale = UI_SCALE;
+            const scale = story.UI_SCALE;
             const img = this.image;
             const width = img.width * scale;
             const height = img.height * scale;
@@ -271,12 +271,12 @@ namespace story {
             }
 
             this.setImage(image.create(width, height));
-            this.setScale(UI_SCALE);
+            this.setScale(story.UI_SCALE);
         }
 
         setAnchor(cx: number, cy: number) {
-            this.cx = cx / UI_SCALE;
-            this.cy = cy / UI_SCALE;
+            this.cx = cx / story.UI_SCALE;
+            this.cy = cy / story.UI_SCALE;
         }
 
         setAnchorSprite(anchor: Sprite) {

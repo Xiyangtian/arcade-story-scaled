@@ -30,7 +30,7 @@ namespace story.menu {
     }
 
     class LayoutMetrics {
-        
+
         constructor(public left: number, public top: number, public width: number, public height: number) {
         }
 
@@ -82,7 +82,7 @@ namespace story.menu {
             this.cursorForeground = Math.max(Math.min(cursorForeground | 0, 15), 0);
             this.cursorBackground = Math.max(Math.min(cursorBackground | 0, 15), 0);
         }
-        
+
         setStyle(style: MenuStyle) {
             this.style = style;
         }
@@ -206,7 +206,7 @@ namespace story.menu {
         }
 
         __drawCore(camera: scene.Camera) {
-            const scale = UI_SCALE;
+            const scale = story.UI_SCALE;
             if (this.background) {
                 screen.fillRect(
                     this.metrics.left * scale,
@@ -258,7 +258,7 @@ namespace story.menu {
         }
 
         protected drawGridMenu() {
-            const scale = UI_SCALE;
+            const scale = story.UI_SCALE;
             let current: ScrollingLabel;
 
             let top = this.metrics.top + this.padding;
@@ -286,7 +286,7 @@ namespace story.menu {
         }
 
         protected drawListMenu() {
-            const scale = UI_SCALE;
+            const scale = story.UI_SCALE;
             let current: ScrollingLabel;
 
             let top = this.metrics.top + this.padding;
@@ -404,23 +404,23 @@ namespace story.menu {
             }
             else {
                 const drawWidth = this.maxCharacters * charW;
-                const scaled = image.create(drawWidth * scale, charH * scale);
-                for (let x = 0; x < drawWidth; x++) {
-                    for (let y = 0; y < charH; y++) {
-                        const c = canvas.getPixel(x, y);
-                        if (c) {
-                            scaled.fillRect(x * scale, y * scale, scale, scale, c);
-                        }
-                    }
-                }
-                screen.drawTransparentImage(scaled, left, top);
+                const scaledWidth = (drawWidth * scale) | 0;
+                const scaledHeight = (charH * scale) | 0;
+                screen.blit(
+                    left, top,
+                    scaledWidth, scaledHeight,
+                    canvas,
+                    0, 0,
+                    drawWidth, charH,
+                    true, false
+                );
             }
         }
     }
 
     function getLayoutMetrics(layout: MenuLocation) {
         const padding = 2;
-        const scale = UI_SCALE;
+        const scale = story.UI_SCALE;
 
         const maxWidth = Math.idiv(screen.width - (padding << 1), scale);
         const maxHeight = Math.idiv(screen.height - (padding << 1), scale);

@@ -198,10 +198,10 @@ namespace story {
             _activeBubble = null;
         }
 
-        const width = Math.idiv(screen.width - 10, UI_SCALE);
-        const height = Math.min(50, Math.idiv(screen.height >> 1, UI_SCALE));
-        const x = Math.idiv(screen.width, UI_SCALE << 1);
-        const y = Math.idiv(screen.height, UI_SCALE) - Math.idiv(height, 2) - 5;
+        const width = Math.idiv(screen.width - 10, story.UI_SCALE);
+        const height = Math.min(50, Math.idiv(screen.height >> 1, story.UI_SCALE));
+        const x = Math.idiv(screen.width, story.UI_SCALE * 2);
+        const y = Math.idiv(screen.height, story.UI_SCALE) - Math.idiv(height, 2) - 5;
         const bubble = _createDialog(text, x, y, height, width);
         _activeBubble = bubble;
 
@@ -211,12 +211,12 @@ namespace story {
             labelText.setText(label);
             labelText.setColor(14);
             labelText.setFlag(SpriteFlag.RelativeToCamera, true);
-            labelText.left = 3 * UI_SCALE;
-            labelText.top = (y - (height >> 1)) * UI_SCALE - labelText.height - padding;
+            labelText.left = 3 * story.UI_SCALE;
+            labelText.top = (y - (height >> 1)) * story.UI_SCALE - labelText.height - padding;
             labelText.attachToTask(bubble);
 
             const labelBackdrop = new RectangleSprite(TEXT_Z + 1);
-            labelBackdrop.setDimensions(Math.idiv(labelText.width + (padding << 1), UI_SCALE), Math.idiv(labelText.height + (padding << 1), UI_SCALE));
+            labelBackdrop.setDimensions(Math.idiv(labelText.width + (padding << 1), story.UI_SCALE), Math.idiv(labelText.height + (padding << 1), story.UI_SCALE));
             labelBackdrop.setColor(9);
             labelBackdrop.setFlag(SpriteFlag.RelativeToCamera, true);
             labelBackdrop.left = labelText.left - padding;
@@ -274,7 +274,7 @@ namespace story {
         const backdrop = sprites.create(backdropImg);
         backdrop.setFlag(SpriteFlag.Ghost, true);
         backdrop.z = TEXT_Z - 1;
-        backdrop.setScale(UI_SCALE);
+        backdrop.setScale(story.UI_SCALE);
 
         // 文字
         const textImg = image.create(w, h);
@@ -282,7 +282,7 @@ namespace story {
         const textSprite = sprites.create(textImg);
         textSprite.setFlag(SpriteFlag.Ghost, true);
         textSprite.z = TEXT_Z;
-        textSprite.setScale(UI_SCALE);
+        textSprite.setScale(story.UI_SCALE);
 
         const info: SayInfo = {
             sprite,
@@ -420,8 +420,8 @@ namespace story {
         backdrop.setColor(background);
         backdrop.setDimensions(width, height);
         backdrop.setFlag(SpriteFlag.RelativeToCamera, true);
-        backdrop.left = left * UI_SCALE;
-        backdrop.top = top * UI_SCALE;
+        backdrop.left = left * story.UI_SCALE;
+        backdrop.top = top * story.UI_SCALE;
         backdrop.attachToTask(bubble);
 
         return bubble;

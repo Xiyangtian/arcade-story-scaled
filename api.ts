@@ -20,7 +20,7 @@ namespace story {
     //% scale.defl=1
     //% weight=0
     export function setScale(scale: number) {
-        UI_SCALE = Math.max(1, scale | 0);
+        UI_SCALE = Math.max(1, scale);
     }
 
     /**

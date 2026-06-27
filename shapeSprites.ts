@@ -50,13 +50,13 @@ namespace story {
         getWidth() {
             if (!this.text) return 0;
             const font = image.getFontForText(this.text);
-            return font.charWidth * this.text.length * UI_SCALE;
+            return font.charWidth * this.text.length * story.UI_SCALE;
         }
 
         getHeight() {
             if (!this.text) return 0;
             const font = image.getFontForText(this.text);
-            return font.charHeight * UI_SCALE;
+            return font.charHeight * story.UI_SCALE;
         }
 
         refresh() {
@@ -70,7 +70,7 @@ namespace story {
             const img = image.create(w, h);
             img.print(this.text, 0, 0, this.color);
             this.setImage(img);
-            this.setScale(UI_SCALE);
+            this.setScale(story.UI_SCALE);
         }
     }
 
@@ -108,7 +108,7 @@ namespace story {
                 img.fillRect(0, 0, this.logicalWidth, this.logicalHeight, this.color);
             }
             this.setImage(img);
-            this.setScale(UI_SCALE);
+            this.setScale(story.UI_SCALE);
         }
     }
 
@@ -118,7 +118,7 @@ namespace story {
         setIcon(icon: Image) {
             this.icon = icon;
             this.setImage(icon);
-            this.setScale(UI_SCALE);
+            this.setScale(story.UI_SCALE);
         }
     }
 }
