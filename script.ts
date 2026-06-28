@@ -131,7 +131,7 @@ namespace story {
             b.setAlign(x, y);
         }
         else {
-            b.setAnchor(x, y);
+            b.setAnchor(x * story.UI_SCALE, y * story.UI_SCALE);
         }
 
         startScript(script, b);

@@ -200,8 +200,8 @@ namespace story {
 
         const width = Math.idiv(screen.width - 10, story.UI_SCALE);
         const height = Math.min(50, Math.idiv(screen.height / 2, story.UI_SCALE));
-        const x = Math.idiv(screen.width, story.UI_SCALE * 2);
-        const y = Math.idiv(screen.height, story.UI_SCALE) - Math.idiv(height, 2) - 5;
+        const x = screen.width / 2;
+        const y = screen.height - (height * story.UI_SCALE) / 2 - 5 * story.UI_SCALE;
         const bubble = _createDialog(text, x, y, height, width);
         _activeBubble = bubble;
 
@@ -212,7 +212,7 @@ namespace story {
             labelText.setColor(14);
             labelText.setFlag(SpriteFlag.RelativeToCamera, true);
             labelText.left = 3 * story.UI_SCALE;
-            labelText.top = (y - height / 2) * story.UI_SCALE - labelText.height - padding;
+            labelText.top = y - (height * story.UI_SCALE) / 2 - labelText.height - padding;
             labelText.attachToTask(bubble);
 
             const labelBackdrop = new RectangleSprite(TEXT_Z + 1);
@@ -411,7 +411,7 @@ namespace story {
         const top = y - height / 2
 
         const bubble = new Bubble(TEXT_Z, true);
-        bubble.setAlign(left, top);
+        bubble.setAnchor(x * story.UI_SCALE, y * story.UI_SCALE);
         bubble.foregroundColor = foreground;
         bubble.backgroundColor = background;
         bubble.startMessage(script.pages);
