@@ -411,7 +411,7 @@ namespace story {
         const top = y - height / 2
 
         const bubble = new Bubble(TEXT_Z, true);
-        bubble.setAnchor(x * story.UI_SCALE, y * story.UI_SCALE);
+        bubble.setAnchor(x, y);
         bubble.foregroundColor = foreground;
         bubble.backgroundColor = background;
         bubble.startMessage(script.pages);
