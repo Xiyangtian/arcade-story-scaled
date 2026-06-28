@@ -108,7 +108,7 @@ namespace story {
 
             const totalWidth = arrowText.width + buttonText.width + arrowIcon.width + buttonIcon.width + 4;
 
-            arrowIcon.left = (screen.width >> 1) - totalWidth / 2;
+            arrowIcon.left = screen.width / 2 - totalWidth / 2;
             arrowText.left = arrowIcon.left + arrowIcon.width + 1
             buttonIcon.left = arrowText.left + arrowText.width + 2;
             buttonText.left = buttonIcon.left + buttonIcon.width + 1;
@@ -116,7 +116,7 @@ namespace story {
             const backdrop = new story.RectangleSprite(story.TEXT_Z);
             backdrop.setDimensions(156, arrows.height);
             backdrop.top = screen.height - backdrop.height;
-            backdrop.left = (screen.width >> 1) - backdrop.width / 2;
+            backdrop.left = screen.width / 2 - backdrop.width / 2;
 
             story.menu.showMenu(choices, story.menu.MenuStyle.List, story.menu.MenuLocation.BottomHalf);
             pauseUntil(() => !story.menu.isMenuOpen());
@@ -199,7 +199,7 @@ namespace story {
         }
 
         const width = Math.idiv(screen.width - 10, story.UI_SCALE);
-        const height = Math.min(50, Math.idiv(screen.height >> 1, story.UI_SCALE));
+        const height = Math.min(50, Math.idiv(screen.height / 2, story.UI_SCALE));
         const x = Math.idiv(screen.width, story.UI_SCALE * 2);
         const y = Math.idiv(screen.height, story.UI_SCALE) - Math.idiv(height, 2) - 5;
         const bubble = _createDialog(text, x, y, height, width);
@@ -212,7 +212,7 @@ namespace story {
             labelText.setColor(14);
             labelText.setFlag(SpriteFlag.RelativeToCamera, true);
             labelText.left = 3 * story.UI_SCALE;
-            labelText.top = (y - (height >> 1)) * story.UI_SCALE - labelText.height - padding;
+            labelText.top = (y - height / 2) * story.UI_SCALE - labelText.height - padding;
             labelText.attachToTask(bubble);
 
             const labelBackdrop = new RectangleSprite(TEXT_Z + 1);
@@ -407,8 +407,8 @@ namespace story {
         const font = image.getFontForText(text);
         const script = _formatText(text, speed === undefined ? TextSpeed.Normal : speed, Math.idiv(width - 8, font.charWidth), Math.idiv(height - 8, font.charHeight));
 
-        const left = x - (width >> 1);
-        const top = y - (height >> 1)
+        const left = x - width / 2;
+        const top = y - height / 2
 
         const bubble = new Bubble(TEXT_Z, true);
         bubble.setAlign(left, top);

@@ -121,7 +121,7 @@ namespace story {
         const font = image.getFontForText(text);
         const script = _formatText(text, speed === undefined ? TextSpeed.Normal : speed, Math.idiv(width - 8, font.charWidth), Math.idiv(height - 8, font.charHeight));
         script.setColors(foreground, background);
-        printScript(script, x - (width >> 1), y - (height >> 1), TEXT_Z, true, true);
+        printScript(script, x - width / 2, y - height / 2, TEXT_Z, true, true);
     }
 
     /**

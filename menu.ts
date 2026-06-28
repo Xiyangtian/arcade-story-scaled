@@ -230,7 +230,7 @@ namespace story.menu {
 
         protected getMaxLabelWidth() {
             if (this.style === MenuStyle.Grid) {
-                return (this.metrics.width - (this.padding * 3)) >> 1;
+                return (this.metrics.width - (this.padding * 3)) / 2;
             }
             return this.metrics.width - (this.padding << 1);
         }
@@ -424,8 +424,8 @@ namespace story.menu {
 
         const maxWidth = Math.idiv(screen.width - (padding << 1), scale);
         const maxHeight = Math.idiv(screen.height - (padding << 1), scale);
-        const halfWidth = Math.idiv(screen.width >> 1, scale);
-        const halfHeight = Math.idiv(screen.height >> 1, scale);
+        const halfWidth = (screen.width / 2) / scale;
+        const halfHeight = (screen.height / 2) / scale;
 
         switch (layout) {
             case MenuLocation.FullScreen:
@@ -433,21 +433,21 @@ namespace story.menu {
             case MenuLocation.Center:
                 return new LayoutMetrics(0, 0, 0, 0);
             case MenuLocation.TopHalf:
-                return new LayoutMetrics(padding, padding, maxWidth, maxHeight >> 1);
+                return new LayoutMetrics(padding, padding, maxWidth, maxHeight / 2);
             case MenuLocation.RightHalf:
-                return new LayoutMetrics(halfWidth, padding, maxWidth >> 1, maxHeight);
+                return new LayoutMetrics(halfWidth, padding, maxWidth / 2, maxHeight);
             case MenuLocation.BottomHalf:
-                return new LayoutMetrics(padding, halfHeight, maxWidth, maxHeight >> 1);
+                return new LayoutMetrics(padding, halfHeight, maxWidth, maxHeight / 2);
             case MenuLocation.LeftHalf:
-                return new LayoutMetrics(padding, padding, maxWidth >> 1, maxHeight);
+                return new LayoutMetrics(padding, padding, maxWidth / 2, maxHeight);
             case MenuLocation.TopRight:
-                return new LayoutMetrics(halfWidth, padding, maxWidth >> 1, maxHeight >> 1);
+                return new LayoutMetrics(halfWidth, padding, maxWidth / 2, maxHeight / 2);
             case MenuLocation.BottomRight:
-                return new LayoutMetrics(halfWidth, halfHeight, maxWidth >> 1, maxHeight >> 1);
+                return new LayoutMetrics(halfWidth, halfHeight, maxWidth / 2, maxHeight / 2);
             case MenuLocation.BottomLeft:
-                return new LayoutMetrics(padding, halfHeight, maxWidth >> 1, maxHeight >> 1);
+                return new LayoutMetrics(padding, halfHeight, maxWidth / 2, maxHeight / 2);
             case MenuLocation.TopLeft:
-                return new LayoutMetrics(padding, padding, maxWidth >> 1, maxHeight >> 1);
+                return new LayoutMetrics(padding, padding, maxWidth / 2, maxHeight / 2);
         }
     }
 }

@@ -225,7 +225,7 @@ namespace story {
             let top = this.padding;
             for (let i = 0; i < lines.length; i++) {
                 const line = lines[i];
-                let left = this.padding + (this.centered ? ((img.width >> 1) - (line.width >> 1)) : 0);
+                let left = this.padding + (this.centered ? ((img.width / 2) - (line.width / 2)) : 0);
                 for (const part of line.parts) {
                     img.print(part.text, left, top, this.foregroundColor);
                     left += part.width;
