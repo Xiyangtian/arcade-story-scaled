@@ -1,7 +1,7 @@
 {
-    "name": "arcade-simple-story",
-    "version": "1.0.0",
-    "description": "A simplified story text dialog extension for MakeCode Arcade with UI scaling support",
+    "name": "arcade-story-scaled",
+    "version": "1.0.1",
+    "description": "支持 UI 缩放的 MakeCode Arcade 故事对话扩展，提供角色对话、菜单选择、文本打印等功能",
     "dependencies": {
         "device": "*"
     },
