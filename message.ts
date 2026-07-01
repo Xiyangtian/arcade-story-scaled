@@ -208,6 +208,7 @@ namespace story {
                 }
             }
 
+            console.log("Bubble cx:", this.cx, "cy:", this.cy, "scale:", scale, "imgW:", img.width, "imgH:", img.height, "left:", left, "top:", top);
             this.left = left;
             this.top = top;
         }
