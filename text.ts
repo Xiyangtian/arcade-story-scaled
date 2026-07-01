@@ -24,7 +24,7 @@ namespace story {
     export function printText(text: string, x: number, y: number, foreground = 15, background = 1, speed?: TextSpeed) {
         const script = _formatText(text, speed === undefined ? TextSpeed.Normal : speed);
         script.setColors(foreground, background);
-        printScript(script, x, y, TEXT_Z);
+        printScript(script, x / story.UI_SCALE, y / story.UI_SCALE, TEXT_Z);
     }
 
     function isBreakCharacter(charCode: number) {
