@@ -7,7 +7,7 @@ namespace story {
         cancel?: () => void;
     }
 
-    export let UI_SCALE = Math.max(1, Math.floor(screen.width / 160));
+    export let UI_SCALE = Math.max(1, Math.min(screen.width / 160, screen.height / 120));
     export let soundEnabled = true;
     export const TEXT_Z = scene.HUD_Z - 1;
 
