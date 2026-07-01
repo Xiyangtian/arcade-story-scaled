@@ -198,10 +198,10 @@ namespace story {
             _activeBubble = null;
         }
 
-        const width = Math.idiv(screen.width - 10, story.UI_SCALE);
-        const height = Math.min(50, Math.idiv(screen.height / 2, story.UI_SCALE));
-        const x = Math.idiv(screen.width, story.UI_SCALE * 2);
-        const y = Math.idiv(screen.height, story.UI_SCALE) - Math.idiv(height, 2) - 5;
+        const width = (screen.width - 10) / story.UI_SCALE;
+        const height = Math.min(50, screen.height / 2 / story.UI_SCALE);
+        const x = screen.width / (story.UI_SCALE * 2);
+        const y = screen.height / story.UI_SCALE - (height / 2 | 0) - 5;
         const bubble = _createDialog(text, x, y, height, width);
         _activeBubble = bubble;
 
@@ -216,7 +216,7 @@ namespace story {
             labelText.attachToTask(bubble);
 
             const labelBackdrop = new RectangleSprite(TEXT_Z + 1);
-            labelBackdrop.setDimensions(Math.idiv(labelText.width + (padding << 1), story.UI_SCALE), Math.idiv(labelText.height + (padding << 1), story.UI_SCALE));
+            labelBackdrop.setDimensions((labelText.width + (padding << 1)) / story.UI_SCALE, (labelText.height + (padding << 1)) / story.UI_SCALE);
             labelBackdrop.setColor(9);
             labelBackdrop.setFlag(SpriteFlag.RelativeToCamera, true);
             labelBackdrop.left = labelText.left - padding;
