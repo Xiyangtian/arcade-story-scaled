@@ -102,7 +102,7 @@ namespace story {
      * @param speed The speed at which to print the text
      */
     //% blockId=story_print_dialog
-    //% block="在相机 x $x y $y 的盒子中打印 $text 宽度 $width 高度 $height||文字颜色 $foreground 背景颜色 $background 速度 $speed"
+    //% block="在 x $x y $y 处显示对话框 文本 $text 宽度 $width 高度 $height||文字颜色 $foreground 背景颜色 $background 速度 $speed"
     //% help=github:arcade-story/print-dialog.md
     //% text.defl=":)"
     //% foreground.shadow=colorindexpicker
