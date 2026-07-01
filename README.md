@@ -1,4 +1,4 @@
-# arcade-simple-story
+# arcade-story-scaled
 
 支持 UI 缩放的 MakeCode Arcade 故事对话扩展。
 
