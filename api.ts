@@ -1,5 +1,5 @@
 //% block="故事" color="#b36634" icon="\uf02d"
-//% groups='["文本","移动","过场动画","菜单"]'
+//% groups='["缩放","文本","移动","过场动画","菜单"]'
 namespace story {
     export interface Task {
         isDone(): boolean;
@@ -17,8 +17,9 @@ namespace story {
      */
     //% blockId=story_set_ui_scale
     //% block="设置故事UI缩放比例为 $scale"
+    //% group="缩放"
     //% scale.defl=1
-    //% weight=0
+    //% weight=100
     export function setScale(scale: number) {
         UI_SCALE = Math.max(1, scale);
     }
