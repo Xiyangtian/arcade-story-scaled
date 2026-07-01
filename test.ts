@@ -5,7 +5,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, () => {
 })
 
 story.queueStoryPart(() => {
-    story.printDialog("Here is some test text. it's got some punctuation, and i wouldn't love if it didn't break like i expected it too.", 80, 90, 50, 150, 0xF, 0x1, story.TextSpeed.VeryFast);
+    story.printDialog("xxHere is some test text. it's got some punctuation, and i wouldn't love if it didn't break like i expected it too.", 80, 90, 50, 150, 0xF, 0x1, story.TextSpeed.VeryFast);
 });
 story.queueStoryPart(() => {
     story.printDialog("Here is some more text; if you pressed A to clear before this started and it's still showing up, something is wrong :(", 80, 90, 50, 150);
